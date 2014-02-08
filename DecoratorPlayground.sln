@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundingService", "DecoratorPlayground\FundingService.csproj", "{E420A7F3-1B0A-4181-A182-560F2DCA5C04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Services", "Application.Services\Application.Services.csproj", "{AEB5B8D9-1DFE-43CB-97D2-770003750BC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{5E7ECCB5-A281-4A74-BDF4-DE85AFC08BEA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E420A7F3-1B0A-4181-A182-560F2DCA5C04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E420A7F3-1B0A-4181-A182-560F2DCA5C04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E420A7F3-1B0A-4181-A182-560F2DCA5C04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E420A7F3-1B0A-4181-A182-560F2DCA5C04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEB5B8D9-1DFE-43CB-97D2-770003750BC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEB5B8D9-1DFE-43CB-97D2-770003750BC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEB5B8D9-1DFE-43CB-97D2-770003750BC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEB5B8D9-1DFE-43CB-97D2-770003750BC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E7ECCB5-A281-4A74-BDF4-DE85AFC08BEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E7ECCB5-A281-4A74-BDF4-DE85AFC08BEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E7ECCB5-A281-4A74-BDF4-DE85AFC08BEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E7ECCB5-A281-4A74-BDF4-DE85AFC08BEA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
