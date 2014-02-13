@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Services.Wrapper
+namespace Contracts
 {
-    public class FundingChannel
+    public class Request
     {
-        public static State Web { get {return new State(1);} }
+        public int RequestSource { get; set; }
     }
 }

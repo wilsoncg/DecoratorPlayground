@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Services;
-using Application.Services.Wrapper;
 using Contracts;
 using FundingService.Processor;
+using GenesisWrapping;
+using GenesisWrapping.Wrapper;
 using log4net;
 
 namespace FundingService
@@ -40,13 +41,14 @@ namespace FundingService
                 
                 if (paymentServiceResponse.Code == EFTFeedback.ThreeDSecureEnrolled.Id)
                 {
-                    TransactionService.UpdateTransactionState(transactionId, EFTCardTransactionState.EnrolledIn3DSecureAuthenticationRequired.Id);
-                    TransactionAuditor.RecordTransactionStepResult(transactionId, paymentServiceResponse.Code, paymentServiceResponse.Description);
+                    GenesisWrapper.SavePaReq(paymentServiceResponse.TransactionId, paymentServiceResponse.PaymentAuthenticationRequestMessage, paymentServiceResponse.Code, paymentServiceResponse.ServiceProviderReference);
+                    TransactionService.UpdateTransactionState(paymentServiceResponse, EFTCardTransactionState.EnrolledIn3DSecureAuthenticationRequired.Id);
+                    TransactionAuditor.RecordTransactionStep(transactionId, paymentServiceResponse.Code, paymentServiceResponse.Description);
                 }
                 else if (paymentServiceResponse.Code == EFTFeedback.NotThreeDSecureEnrolled.Id)
                 {
-                    TransactionService.UpdateTransactionState(transactionId, EFTCardTransactionState.NotEnrolledIn3DSecureCompletePayment.Id);
-                    TransactionAuditor.RecordTransactionStepResult(transactionId, paymentServiceResponse.Code, paymentServiceResponse.Description);
+                    TransactionService.UpdateTransactionState(paymentServiceResponse, EFTCardTransactionState.NotEnrolledIn3DSecureCompletePayment.Id);
+                    TransactionAuditor.RecordTransactionStep(transactionId, paymentServiceResponse.Code, paymentServiceResponse.Description);
                     var authResponse = PaymentService.AuthorisePayment(paymentServiceResponse.ServiceProviderReference, null, request.TradingAccountCode, transactionId);
                     var authTransactionProcessorResponse = AuthorisedTransactionProcessor.Process(request, authResponse);
 
@@ -60,13 +62,14 @@ namespace FundingService
                 }
                 else
                 {
-                    TransactionService.UpdateTransactionState(transactionId, EFTCardTransactionState.Rejected.Id);
+                    TransactionService.UpdateTransactionState(paymentServiceResponse, EFTCardTransactionState.Rejected.Id);
                     TransactionAuditor.RecordFailedTransaction(transactionId, paymentServiceResponse.Code, paymentServiceResponse.Description);
                 }
             }
             else
             {
-                var authTransactionProcessorResponse = AuthorisedTransactionProcessor.Process(request, paymentServiceResponse);
+                var response = PaymentService.MakeMotoPayment(request, request.TradingAccountCode, transaction.Id, transaction.FundingChannelId);
+                var authTransactionProcessorResponse = AuthorisedTransactionProcessor.Process(request, response);
                 return new MakePaymentResponse
                 {
                     Code = authTransactionProcessorResponse.Code,

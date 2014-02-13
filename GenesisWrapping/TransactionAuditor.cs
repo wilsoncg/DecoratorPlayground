@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application.Services.Wrapper;
+﻿using GenesisWrapping.Wrapper;
 
-namespace Application.Services
+namespace GenesisWrapping
 {
-    public class TransactionAuditor
+    public interface ITransactionAuditor
+    {
+        void RecordTransactionStep(int transactionId, int responseCode, string responseDescription);
+        void RecordTransactionStepStart(int transactionId, string transactionStepName);
+    }
+
+    public class TransactionAuditor : ITransactionAuditor
     {
         public IGenesisWrapper GenesisWrapper { get; set; }
 
@@ -63,9 +64,9 @@ namespace Application.Services
             GenesisWrapper.AddTransactionAudit(new EFTCardTransactionAudit(0, transactionId, "FAILED", responseCode.ToString(), responseDescription, DateTimeFactory.DateTimeNow(), 5002));
         }
 
-        public void RecordTransactionStepResult(int transactionId, int responseCode, string responseDescription)
+        public void RecordTransactionStep(int transactionId, int responseCode, string responseDescription)
         {
-            GenesisWrapper.AddTransactionAudit(new EFTCardTransactionAudit(0, transactionId, "END", responseCode.ToString(), responseDescription, DateTimeFactory.DateTimeNow(), 5002));
+            GenesisWrapper.AddTransactionAudit(new EFTCardTransactionAudit(0, transactionId, "STEP", responseCode.ToString(), responseDescription, DateTimeFactory.DateTimeNow(), 5002));
         }
     }
 }

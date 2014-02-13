@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AEB5B8D9-1DFE-43CB-97D2-770003750BC5}</ProjectGuid>
+    <ProjectGuid>{6617C450-E4D3-4EC8-93C0-0371FDB1AE05}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Application.Services</RootNamespace>
-    <AssemblyName>Application.Services</AssemblyName>
+    <RootNamespace>GenesisWrapping</RootNamespace>
+    <AssemblyName>GenesisWrapping</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,21 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthResponse.cs" />
-    <Compile Include="PaymentService.cs" />
-    <Compile Include="TransactionService.cs" />
-    <Compile Include="TransactionServiceAuditor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Contracts\Contracts.csproj">
-      <Project>{5E7ECCB5-A281-4A74-BDF4-DE85AFC08BEA}</Project>
-      <Name>Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GenesisWrapping\GenesisWrapping.csproj">
-      <Project>{6617C450-E4D3-4EC8-93C0-0371FDB1AE05}</Project>
-      <Name>GenesisWrapping</Name>
-    </ProjectReference>
+    <Compile Include="TransactionAuditor.cs" />
+    <Compile Include="Wrapper\DateTimeFactory.cs" />
+    <Compile Include="Wrapper\EFTCardTransactionAudit.cs" />
+    <Compile Include="Wrapper\EFTCardTransactionState.cs" />
+    <Compile Include="Wrapper\EFTFeedback.cs" />
+    <Compile Include="Wrapper\FundingChannel.cs" />
+    <Compile Include="Wrapper\IGenesisWrapper.cs" />
+    <Compile Include="Wrapper\State.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

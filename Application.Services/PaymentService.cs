@@ -18,5 +18,10 @@ namespace Application.Services
         {
             return new AuthResponse();
         }
+
+        public AuthResponse MakeMotoPayment(MakePaymentRequest request, string tradingAccountCode, int transactionId, int fundingChannelId)
+        {
+            return new AuthResponse();
+        }
     }
 }

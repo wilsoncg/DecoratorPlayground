@@ -6,5 +6,6 @@
         public string Description { get; set; }
         public string ServiceProviderReference { get; set; }
         public int TransactionId { get; set; }
+        public string PaymentAuthenticationRequestMessage { get; set; }
     }
 }

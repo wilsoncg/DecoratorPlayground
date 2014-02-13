@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Application.Services
+namespace GenesisWrapping.Wrapper
 {
     public class DateTimeFactory
     {

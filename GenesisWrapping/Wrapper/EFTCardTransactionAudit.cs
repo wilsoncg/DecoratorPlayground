@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Application.Services.Wrapper
+namespace GenesisWrapping.Wrapper
 {
     public class EFTCardTransactionAudit
     {
